@@ -25,12 +25,12 @@ Dashboard
               <!-- small box -->
               <div class="small-box bg-green">
                 <div class="inner">
-                  <h3>#</h3>
+                  <h3>{{ DB::table('alat')->count() }}</h3>
 
                   <p>Alat</p>
                 </div>
                 <div class="icon">
-                  <i class="ion fa-gavel"></i>
+                  <i class="fa fa-wrench"></i>
                 </div>
               </div>
             </div>

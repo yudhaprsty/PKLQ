@@ -4,7 +4,7 @@
   <div class="row top_tiles">
     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
       <div class="tile-stats">
-        <div class="icon"><i class="fa fa-mortar-board"></i></div>
+        <div class="icon"><i class="fa fa-group"></i></div>
         <div class="count">{{ DB::table('users')->count() }}</div>
         <h3>Anggota</h3>
       </div>
@@ -52,7 +52,7 @@
         height: 500px;
       }
     </style>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbJw9v5SiIYxzP5Z3gHHpVwlahVkWapk0&callback=initialize" async defer></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbJw9v5SiIYxzP5Z3gHHpVwlahVkWapk0&callback=initialize"></script>
     <script type="text/javascript">
 
     var markers = <?php echo json_encode($longlat); ?>;

@@ -104,7 +104,7 @@
           height: 500px;
         }
       </style>
-      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbJw9v5SiIYxzP5Z3gHHpVwlahVkWapk0&callback=initialize" async defer></script>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbJw9v5SiIYxzP5Z3gHHpVwlahVkWapk0&callback=initialize"></script>
       <script type="text/javascript">
       function getdata(valarray){
         var valarray = <?php echo json_encode($my_array); ?>;
@@ -142,7 +142,7 @@
               marker = new google.maps.Marker({
                   position: pos,
                   map: map,
-                  animation:google.maps.Animation.BOUNCE,
+                  // animation:google.maps.Animation.BOUNCE,
                   icon:'biru2.png',
                 });
               }
@@ -151,7 +151,7 @@
                     position: pos,
                     map: map,
                     // animation:google.maps.Animation.BOUNCE,
-                    // icon:'merah.png',
+                    icon:'merah.png',
                 });
               }
 
@@ -169,7 +169,8 @@
       </script>
   </head>
   <body>
-    <div class="flex-center position-ref full-height">
+    <div class="container-login100" style="background-image: url('page/login/images/welcome.jpg');">
+      <div class="flex-center position-ref full-height">
         @if (Route::has('login'))
           <div class="top-right links">
             @auth
@@ -198,7 +199,7 @@
           <div id="map-canvas"></div>
           <br>
           <div class="cleafix"></div>
-
+      </div>
     </div>
   </body>
 </html>

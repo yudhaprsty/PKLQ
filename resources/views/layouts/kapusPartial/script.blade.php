@@ -10,3 +10,5 @@
 <script src="{{ asset('admintemplate/dist/js/adminlte.min.js') }}" ></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('admintemplate/dist/js/demo.js') }}" ></script>
+<script src="{{ asset('admintemplate/bower_components/raphael/raphael.min.js') }}"></script>
+<script src="{{ asset('admintemplate/bower_components/morris.js/morris.min.js') }}"></script>
