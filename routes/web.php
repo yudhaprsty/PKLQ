@@ -24,11 +24,14 @@ error_reporting(0);
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/profile', function () {
+    return view('kapus/profile');
+});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('admin.dashboard');
-
+Route::get('/home/{id_cabang}', 'UserController@view_cabang')->name('kapuslihat.agam');
 
 //Route::get('/ea', function(){
   //run cmd
@@ -51,6 +54,19 @@ Route::prefix('admin')->group(function(){
 
   Route::get('/tambahCabang', 'AdminController@tambahCabang')->name('tambahCabang');
   Route::post('/tambahCabang', 'AdminController@createCabang')->name('tambahCabang.create');
+
+  Route::get('/lihatFile', 'AdminController@lihatFile')->name('lihatFile');
+
+  Route::get('/DaftarCabang', 'AdminController@DaftarCabang')->name('DaftarCabang');
+  Route::delete('/DaftarCabang/{id}/delete', 'AdminController@HapusCabang')->name('HapusCabang');
+
+  Route::get('/DaftarAlat', 'AdminController@DaftarAlat')->name('DaftarAlat');
+  Route::delete('/DaftarAlat/{id}/delete', 'AdminController@HapusAlat')->name('HapusAlat');
+
+  Route::get('/tambahAlat', 'AdminController@tambahAlat')->name('tambahAlat');
+  Route::post('/tambahAlat', 'AdminController@createAlat')->name('tambahAlat.create');
+
+  Route::get('/Laporan', 'AdminController@Laporan')->name('laporan');
 });
 
 Route::get('/pdf', 'PDFController@getPDF');
@@ -67,14 +83,14 @@ Route::get('/wow', function(){
 });
 
 Route::get('/ea', function(){
-$mysqli = new mysqli("localhost", "root", "", "siaplapan");
+$mysqli = new mysqli("us-cdbr-iron-east-01.cleardb.net", "b74b41d1c88516", "39e76a83", "heroku_4e8464d3448c183");
 
 // Check connection
 if($mysqli === false){
     die("ERROR: Could not connect. " . $mysqli->connect_error);
 }
 
-  $process = new Process('python ../routes/data.py');
+  $process = new Process('../routes/data.py');
   $process->run();
 
   if (!$process->isSuccessful()) {

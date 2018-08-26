@@ -7,6 +7,10 @@ use App\User;
 use Hash;
 use Auth;
 use Alert;
+use App\sidebar;
+use App\File;
+use App\Alat;
+use Chart;
 
 class UserController extends Controller
 {
@@ -14,6 +18,23 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function view_cabang($id)
+    {
+      $side = sidebar::orderBy('id_cabang')->get();
+      $file = File::orderBy('id_file')->get();
+      $alat = Alat::orderBy('id_alat')->get();
+      session()->put('file', $file);
+      session()->put('id', $id);
+      session()->put('alat', $alat);
+      return view('kapus/agam', compact('side'));
+    }
+
+    public function view_profile()
+    {
+      $side = sidebar::orderBy('id_cabang')->get();
+      return view('kapus/profile', compact('side'));
     }
 
     public function gantiPassword(Request $request)

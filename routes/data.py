@@ -3,19 +3,25 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC 
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException
 import os
 import subprocess
 import json
+
+# os.chmod("/app/public", 0o775)
 #import MySQLdb
 
 #db = MySQLdb.connect("localhost","root","","siapLapan")
 #cursor = db.cursor()
 
 #ignored_exceptions=(NoSuchElementException,StaleElementReferenceException,)
+
+# chrome_options = Options()
+# chrome_options.add_argument('--disable-gpu')
+# chrome_options.add_argument('--no-sandbox')
 
 Daerah = []
 Alat = []
@@ -32,8 +38,7 @@ def masuk(fail):
 	actionchains = ActionChains(driver)
 	actionchains.double_click(fail).perform()
 
-driver = webdriver.Chrome(executable_path=r'D:/Driver/chromedriver.exe')
-
+driver = webdriver.Chrome(executable_path=r'../driver/chromedriver.exe')
 #Buka Gdrive
 driver.get("https://drive.google.com")
 
@@ -99,13 +104,13 @@ driver.quit()
 #	print(fail.get_attribute("name"))
 #	teks = fail.text
 #	masuk(fail)
-	
+
 """
 	if(teks.isalpha() or teks.isnumeric() and '.' not in teks):
 		print(teks)
 		masuk(fail)
-		files_1 = driver.find_elements_by_class_name('l-u-V')		
-		
+		files_1 = driver.find_elements_by_class_name('l-u-V')
+
 		for lvl_1 in files_1:	#2017 dan 2018
 			teks1 = lvl_1.text
 			if(teks1.isalpha() or teks1.isnumeric() and '.' not in teks):
@@ -113,27 +118,27 @@ driver.quit()
 				print(lvl_1)
 				masuk(lvl_1)
 				files_2 = driver.find_elements_by_class_name('l-u-V')
-				
+
 				for lvl_2 in files_2:	#Cadi dan GISTM
 					teks2 = lvl_2.text
 					if(teks2.isalpha() or teks2.isnumeric() and '.' not in teks):
 						print(teks2)
 						masuk(lvl_2)
 						files_3 = driver.find_elements_by_class_name('l-u-V')
-						
+
 						for lvl_3 in files_3:	#Bulan
 							teks3 = lvl_3.text
 							if(teks3.isalpha() or teks3.isnumeric() and '.' not in teks):
 								print(teks3)
 								masuk(lvl_3)
 								files_4 = driver.find_elements_by_class_name('l-u-V')
-								
+
 								for lvl_4 in files_4:	#Tanggal
 									teks4 = lvl_4.text
 									if(teks4.isalpha() or teks4.isnumeric() and '.' not in teks):
 										print(teks4)
-								driver.back()		
-								#driver.execute_script("window.history.go(-1)")								
+								driver.back()
+								#driver.execute_script("window.history.go(-1)")
 						driver.execute_script("window.history.go(-1)")
 				driver.execute_script("window.history.go(-1)")
 		driver.execute_script("window.history.go(-1)")
@@ -163,7 +168,7 @@ time.sleep(6000)
 										print('lvl_4')
 										masuk(lvl_4)
 										#files_4 = driver.find_elements_by_class_name('l-u-V')
-				#							teks = lvl_3.text	
+				#							teks = lvl_3.text
 				#								kondisi(lvl_3.text)
 """
 """
@@ -180,7 +185,7 @@ keep_going = True
 while keep_going:
 	try:
 		keep_going = driver.find_element_by_class_name('l-u-V').is_displayed()
-		
+
 	except:
 		files = driver.find_elements_by_class_name("l-Ab-T-r")
 		for fail in files:
