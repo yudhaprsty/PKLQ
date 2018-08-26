@@ -32,6 +32,7 @@
     $longlat = array();
 
     foreach ($IP as $IPs) {
+      $id = $IPs->getAttribute('id_cabang');
       $ping = $IPs->getAttribute('ip_server');
       $name = $IPs->getAttribute('nama_cabang');
       $longitude = $IPs->getAttribute('longitude');
@@ -40,9 +41,10 @@
       $cabang[$i] = shell_exec('ping -n 1 '. $ping);  //kalo ga sekali compiling time nya besar
       $output[$i] = strpos($cabang[$i], 'Reply');
 
-      $longlat[$i] = [$name, (float)$latitude, (float)$longitude];
+      $longlat[$i] = [$name, (float)$latitude, (float)$longitude, (int)$id];
       $i++;
     }
+
    ?>
 
   <head>
@@ -61,6 +63,13 @@
 
         var mapCanvas = document.getElementById('map-canvas');
         var mapOptions = {
+          scrollwheel: false,
+          navigationControl: false,
+          mapTypeControl: false,
+          scaleControl: false,
+          draggable: true,
+          minZoom: 5,
+          maxZoom: 7,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
         var map = new google.maps.Map(mapCanvas, mapOptions)
@@ -76,27 +85,36 @@
             marker = new google.maps.Marker({
                 position: pos,
                 map: map,
-                // animation:google.maps.Animation.BOUNCE,
-                // icon:'location.png',
+                animation:google.maps.Animation.BOUNCE,
+                icon:'biru2.png',
               });
             }
             else {
               marker = new google.maps.Marker({
                   position: pos,
                   map: map,
-                  // icon:'merah2.png',
+                  icon:'merah2.png',
               });
             }
+
+            google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+            return function() {
+                infowindow.setContent(markers[i][0]);
+                infowindow.open(map, marker);
+            }
+            })
+            (marker, i));
 
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
               infowindow.setContent(markers[i][0]);
               infowindow.open(map, marker);
+              window.location.href = `admin/lihatCabang/${markers[i][3]}`;
           }
-          })(marker, i));
+          })
+          (marker, i));
           map.fitBounds(bounds); // setelah looping
         }
-
       }
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>

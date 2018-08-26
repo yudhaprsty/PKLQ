@@ -17,52 +17,45 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="{{ asset('admintemplate/dist/img/p3.png')}}" class="user-image" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <span>Welcome,</span>
+          <p>{{ Auth::user()->name }} </p>
+          <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
         </div>
       </div>
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
+      <!-- <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
+            <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
-              </span>
+             </span>
         </div>
-      </form>
+      </form> -->
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview">
-          <a href="#">
+        <li class="">
+          <a href="{{ route('admin.dashboard')}}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
-          <ul class="treeview-menu">
-            {{--<li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>--}}
-          </ul>
         </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>Cabang</span>
+            <span>Charts</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/cabang/chartjs.html"><i class="fa fa-circle-o"></i> Agam</a></li>
-            <li><a href="pages/Cabang/morris.html"><i class="fa fa-circle-o"></i> Biak</a></li>
-            <li><a href="pages/cabang/flot.html"><i class="fa fa-circle-o"></i> Garut</a></li>
-            <li><a href="pages/cabang/inline.html"><i class="fa fa-circle-o"></i> Kupang</a></li>
-            <li><a href="pages/cabang/inline.html"><i class="fa fa-circle-o"></i> Manado</a></li>
-            <li><a href="pages/cabang/inline.html"><i class="fa fa-circle-o"></i> Pontianak</a></li>
-            <li><a href="pages/cabang/inline.html"><i class="fa fa-circle-o"></i> Sumedang</a></li>
+            @foreach ($side as $id)
+            <li><a href="{{route('kapuslihat.agam', $id->id_cabang) }}"> {{$id->nama_cabang}} </a></li>
+            @endforeach
           </ul>
         </li>
         {{--  hapus dibawah ini  --}}
@@ -88,8 +81,8 @@
       <!-- Default box -->
 
       <!-- /.box -->
-
     </section>
+
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
