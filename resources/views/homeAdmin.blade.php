@@ -13,7 +13,7 @@
       <div class="tile-stats">
         <div class="icon"><i class="fa fa-globe"></i></div>
         <div class="count">{{ DB::table('cabang')->count() }}</div>
-        <h3>Cabang</h3>
+        <h3>Lokasi Pengamatan</h3>
       </div>
     </div>
     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">

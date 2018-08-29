@@ -2,10 +2,13 @@
 
 @section('content')
 <div class="limiter">
-  <div class="container-login100" style="background-image: url('page/login/images/bg-02.jpg');">
+  <div class="container-login100" style="background-image: url('page/login/images/login.jpg');">
+    <div class="clearfix"></div>
     <div class="wrap-login100 p-t-30 p-b-50">
+      <img src="{{ asset('assets/img/simoda.png') }}" alt="..." style="width:380px; height:100px;">
+      <br><br>
       <span class="login100-form-title p-b-41">
-        Account Login
+        Masuk Akun
       </span>
 
       <form method="POST" action="{{ route('login') }}" class="login100-form validate-form p-b-33 p-t-5">

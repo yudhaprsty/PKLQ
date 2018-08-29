@@ -9,17 +9,17 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="{{ route('admin.dashboard') }}" class="site_title"><img src="{{ asset('assets/img/admin.png') }}" height="50px" widht="50px"><span> LAPAN </span></a>
+              <a href="{{ route('admin.dashboard') }}" class="site_title"><img src="{{ asset('assets/img/8.png') }}" height="50px" widht="50px"><span> SIMODA </span></a>
             </div>
             <div class="clearfix"></div>
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
                 <!-- <img src="/storage/{{Auth::user()->avatar}}" alt="..." class="img-circle profile_img"  width="100" height="60"> -->
-                <img src="{{ asset('assets/img/admin.png') }}" alt="..." class="img-circle profile_img">
+                <img src="{{ asset('assets/img/Picture1.png') }}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Welcome,</span>
+                <span>Selamat Datang,</span>
                 <h2>{{ Auth::user()->name }} </h2>
               </div>
             </div>

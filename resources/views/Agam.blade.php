@@ -1,13 +1,17 @@
+<?php session()->put('flag', 5); ?>
 @extends('templates.admins.master')
 
 @section('content')
   <div class="x_panel">
     <div class="col-md-6">
-      <h3>Per Bulan</h3>
+      <?php
+      $id = Session::get('id');
+      $nama_lokasi = App\Cabang::where('id_cabang', $id)->value('nama_cabang');
+      ?>
+      <h3>Monitoring Data Lokasi Pengamatan <?php echo $nama_lokasi; ?></h3>
     </div>
     <?php
       $tahun = Carbon\Carbon::now()->format('Y');
-      // dd((integer)$tahun);
     ?>
     <div class="x_content">
 
@@ -20,9 +24,7 @@
         </br>
         <?php
           $file = Session::get('file');
-          $id = Session::get('id');
           $alat = Session::get('alat');
-          // dd($alat);
         ?>
         <div id="myTabContent2" class="tab-content">
           <div role="tabpanel" class="tab-pane fade active in" id="tab_tahun1" aria-labelledby="home-tab">
@@ -85,6 +87,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Januari <?php echo (integer)$tahun; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -120,7 +125,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                   <?php
                     $array2 = array();
@@ -161,6 +165,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Februari <?php echo (integer)$tahun; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -196,7 +203,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                   <?php
                     $array3 = array();
@@ -237,6 +243,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Maret <?php echo (integer)$tahun; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -272,7 +281,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab">
                   <?php
                     $array4 = array();
@@ -313,6 +321,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> April <?php echo (integer)$tahun; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -348,7 +359,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="profile-tab">
                   <?php
                     $array5 = array();
@@ -389,6 +399,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Mei <?php echo (integer)$tahun; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -424,7 +437,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content6" aria-labelledby="profile-tab">
                   <?php
                     $array6 = array();
@@ -465,6 +477,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Juni <?php echo (integer)$tahun; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -500,7 +515,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content7" aria-labelledby="profile-tab">
                   <?php
                     $array7 = array();
@@ -541,6 +555,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Juli <?php echo (integer)$tahun; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -576,7 +593,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content8" aria-labelledby="profile-tab">
                   <?php
                     $array8 = array();
@@ -617,6 +633,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Agustus <?php echo (integer)$tahun; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -652,7 +671,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content9" aria-labelledby="profile-tab">
                   <?php
                     $array9 = array();
@@ -693,6 +711,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> September <?php echo (integer)$tahun; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -728,7 +749,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content10" aria-labelledby="profile-tab">
                   <?php
                     $array10 = array();
@@ -769,6 +789,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Oktober <?php echo (integer)$tahun; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -804,7 +827,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content11" aria-labelledby="profile-tab">
                   <?php
                     $array11 = array();
@@ -845,6 +867,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> November <?php echo (integer)$tahun; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -880,7 +905,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content12" aria-labelledby="profile-tab">
                   <?php
                     $array12 = array();
@@ -921,6 +945,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Desember <?php echo (integer)$tahun; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -956,13 +983,10 @@
                     }
                   ?>
                 </div>
-
               </div>
             </div>
-
           </div>
           <div role="tabpanel" class="tab-pane fade" id="tab_tahun2" aria-labelledby="profile-tab">
-
             <div class="" role="tabpanel" data-example-id="togglable-tabs">
               <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#tab_content17" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Jan</a></li>
@@ -978,9 +1002,7 @@
                 <li role="presentation" class=""><a href="#tab_content117" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Nov</a></li>
                 <li role="presentation" class=""><a href="#tab_content127" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Des</a></li>
               </ul>
-
               <div id="myTabContent" class="tab-content">
-
                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content17" aria-labelledby="home-tab">
                   <?php
                     $array1 = array();
@@ -1021,6 +1043,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Januari <?php echo (integer)$tahun-1; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -1056,7 +1081,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content27" aria-labelledby="profile-tab">
                   <?php
                     $array21 = array();
@@ -1097,6 +1121,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Februari <?php echo (integer)$tahun-1; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -1132,7 +1159,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content37" aria-labelledby="profile-tab">
                   <?php
                     $array3 = array();
@@ -1173,6 +1199,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Maret <?php echo (integer)$tahun-1; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -1208,7 +1237,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content47" aria-labelledby="profile-tab">
                   <?php
                     $array4 = array();
@@ -1249,6 +1277,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> April <?php echo (integer)$tahun-1; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -1284,7 +1315,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content57" aria-labelledby="profile-tab">
                   <?php
                     $array5 = array();
@@ -1325,6 +1355,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Mei <?php echo (integer)$tahun-1; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -1360,7 +1393,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content67" aria-labelledby="profile-tab">
                   <?php
                     $array6 = array();
@@ -1401,6 +1433,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Juni <?php echo (integer)$tahun-1; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -1436,7 +1471,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content77" aria-labelledby="profile-tab">
                   <?php
                     $array7 = array();
@@ -1477,6 +1511,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Juli <?php echo (integer)$tahun-1; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -1512,7 +1549,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content87" aria-labelledby="profile-tab">
                   <?php
                     $array8 = array();
@@ -1553,6 +1589,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Agustus <?php echo (integer)$tahun-1; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -1588,7 +1627,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content97" aria-labelledby="profile-tab">
                   <?php
                     $array9 = array();
@@ -1629,6 +1667,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> September <?php echo (integer)$tahun-1; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -1664,7 +1705,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content107" aria-labelledby="profile-tab">
                   <?php
                     $array10 = array();
@@ -1705,6 +1745,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Oktober <?php echo (integer)$tahun-1; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -1740,7 +1783,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content117" aria-labelledby="profile-tab">
                   <?php
                     $array11 = array();
@@ -1781,6 +1823,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> November <?php echo (integer)$tahun-1; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -1816,7 +1861,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content127" aria-labelledby="profile-tab">
                   <?php
                     $array12 = array();
@@ -1857,6 +1901,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Desember <?php echo (integer)$tahun-1; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -1892,13 +1939,10 @@
                     }
                   ?>
                 </div>
-
               </div>
             </div>
-
           </div>
           <div role="tabpanel" class="tab-pane fade" id="tab_tahun3" aria-labelledby="profile-tab">
-
             <div class="" role="tabpanel" data-example-id="togglable-tabs">
               <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#tab_content16" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Jan</a></li>
@@ -1914,9 +1958,7 @@
                 <li role="presentation" class=""><a href="#tab_content116" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Nov</a></li>
                 <li role="presentation" class=""><a href="#tab_content126" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Des</a></li>
               </ul>
-
               <div id="myTabContent" class="tab-content">
-
                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content16" aria-labelledby="home-tab">
                   <?php
                     $array1 = array();
@@ -1957,6 +1999,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Januari <?php echo (integer)$tahun-2; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -1992,7 +2037,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content26" aria-labelledby="profile-tab">
                   <?php
                     $array21 = array();
@@ -2033,6 +2077,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Februari <?php echo (integer)$tahun-2; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -2068,7 +2115,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content36" aria-labelledby="profile-tab">
                   <?php
                     $array3 = array();
@@ -2109,6 +2155,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Maret <?php echo (integer)$tahun-2; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -2144,7 +2193,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content46" aria-labelledby="profile-tab">
                   <?php
                     $array4 = array();
@@ -2185,6 +2233,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> April <?php echo (integer)$tahun-2; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -2220,7 +2271,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content56" aria-labelledby="profile-tab">
                   <?php
                     $array5 = array();
@@ -2261,6 +2311,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Mei <?php echo (integer)$tahun-2; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -2296,7 +2349,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content66" aria-labelledby="profile-tab">
                   <?php
                     $array6 = array();
@@ -2337,6 +2389,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Juni <?php echo (integer)$tahun-2; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -2372,7 +2427,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content76" aria-labelledby="profile-tab">
                   <?php
                     $array7 = array();
@@ -2413,6 +2467,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Juli <?php echo (integer)$tahun-2; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -2448,7 +2505,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content86" aria-labelledby="profile-tab">
                   <?php
                     $array8 = array();
@@ -2489,6 +2545,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Agustus <?php echo (integer)$tahun-2; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -2524,7 +2583,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content96" aria-labelledby="profile-tab">
                   <?php
                     $array9 = array();
@@ -2565,6 +2623,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> September <?php echo (integer)$tahun-2; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -2600,7 +2661,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content106" aria-labelledby="profile-tab">
                   <?php
                     $array10 = array();
@@ -2641,6 +2701,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Oktober <?php echo (integer)$tahun-2; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -2676,7 +2739,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content116" aria-labelledby="profile-tab">
                   <?php
                     $array11 = array();
@@ -2717,6 +2779,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> November <?php echo (integer)$tahun-2; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -2752,7 +2817,6 @@
                     }
                   ?>
                 </div>
-
                 <div role="tabpanel" class="tab-pane fade" id="tab_content126" aria-labelledby="profile-tab">
                   <?php
                     $array12 = array();
@@ -2793,6 +2857,9 @@
                                 title: {
                                 text: '<?php echo $alats->nama_alat; ?>'
                                 },
+                                subtitle: {
+                                text: '<?php echo $nama_lokasi?> Desember <?php echo (integer)$tahun-2; ?>',
+                                },
                                 xAxis: {
                                 categories: ['Tanggal 1-7', 'Tanggal 8-14', 'Tanggal 15-21', 'Tanggal 22-31']
                                 },
@@ -2828,15 +2895,11 @@
                     }
                   ?>
                 </div>
-
               </div>
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
 @endsection

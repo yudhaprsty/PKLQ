@@ -3,6 +3,9 @@
 use App\Http\Controllers\Controller;
 use App\Notifications\SendPassword;
 use App\Userinfo;
+use App\Cabang;
+use App\Alat;
+use App\File;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use vendor\laravel\framework\src\Illuminate\Contracts\Support\Htmlable;
@@ -10,29 +13,15 @@ use Carbon\Carbon;
 session()->regenerate();
 error_reporting(0);
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
-});
-Route::get('/profile', function () {
-    return view('kapus/profile');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('admin.dashboard');
-Route::get('/home/{id_cabang}', 'UserController@view_cabang')->name('kapuslihat.agam');
 
+// Route::get('/home/DaftarAlat', 'UserController@daftarAlat')->name('daftarAlat');
 //Route::get('/ea', function(){
   //run cmd
   //$process = new Process('python as.py');
@@ -41,56 +30,85 @@ Route::get('/home/{id_cabang}', 'UserController@view_cabang')->name('kapuslihat.
 //});
 
 Route::prefix('admin')->group(function(){
-  Route::get('/tambahStaff', 'AdminController@view')->name('tambahStaff.view');
-  Route::post('/tambahStaff', 'AdminController@create')->name('tambahStaff.create');
+  //Keanggotaan
+  Route::get('/tambahAnggota', 'AdminController@tambahAnggota')->name('tambahStaff.view');
+  Route::get('/lihatAnggota', 'AdminController@daftarAnggota')->name('lihatStaff.readAll');
+  Route::post('/tambahAnggota', 'AdminController@createAnggota')->name('tambahStaff.create');
+  Route::delete('/lihatAnggota/{id}/delete', 'AdminController@hapusAnggota')->name('lihatStaff.destroy');
 
-  Route::get('/lihatStaff', 'AdminController@readAll')->name('lihatStaff.readAll');
-  Route::delete('/lihatStaff/{id}/delete', 'AdminController@destroy')->name('lihatStaff.destroy');
-
+  //Ganti Password
   Route::get('/profil', 'AdminController@profilAdmin')->name('profilAdmin');
-  Route::post('/profil', 'UserController@gantiPassword')->name('ganti.password');
+  Route::post('/profil', 'AdminController@gantiPassword')->name('ganti.password');
 
-  Route::get('/home/{id_cabang}', 'AdminController@viewCabang')->name('lihat.agam');
+  //Monitor Lokasi
+  Route::get('/lihatCabang/{id_cabang}', 'AdminController@lihatChart')->name('lihat.agam');
 
-  Route::get('/tambahCabang', 'AdminController@tambahCabang')->name('tambahCabang');
+  //Lokasi Pengamatan
   Route::post('/tambahCabang', 'AdminController@createCabang')->name('tambahCabang.create');
+  Route::get('/tambahCabang', 'AdminController@tambahCabang')->name('tambahCabang');
+  Route::get('/DaftarCabang', 'AdminController@daftarCabang')->name('DaftarCabang');
+  Route::delete('/DaftarCabang/{id}/delete', 'AdminController@hapusCabang')->name('HapusCabang');
 
-  Route::get('/lihatFile', 'AdminController@lihatFile')->name('lihatFile');
-
-  Route::get('/DaftarCabang', 'AdminController@DaftarCabang')->name('DaftarCabang');
-  Route::delete('/DaftarCabang/{id}/delete', 'AdminController@HapusCabang')->name('HapusCabang');
-
-  Route::get('/DaftarAlat', 'AdminController@DaftarAlat')->name('DaftarAlat');
-  Route::delete('/DaftarAlat/{id}/delete', 'AdminController@HapusAlat')->name('HapusAlat');
-
+  //Daftar Alat
+  Route::get('/DaftarAlat', 'AdminController@daftarAlat')->name('DaftarAlat');
+  Route::delete('/DaftarAlat/{id}/delete', 'AdminController@hapusAlat')->name('HapusAlat');
   Route::get('/tambahAlat', 'AdminController@tambahAlat')->name('tambahAlat');
   Route::post('/tambahAlat', 'AdminController@createAlat')->name('tambahAlat.create');
 
+  //Laporan
   Route::get('/Laporan', 'AdminController@Laporan')->name('laporan');
+  Route::get('/lihatLaporan/{id}', 'AdminController@lihatLaporan')->name('lihatLaporan');
+
+  // Route::get('/lihatFile', 'AdminController@lihatFile')->name('lihatFile');
 });
 
-Route::get('/pdf', 'PDFController@getPDF');
+Route::prefix('peneliti')->group(function(){
+  //Monitor Lokasi
+  Route::get('/home/{id_cabang}', 'PenelitiController@lihatChartPeneliti')->name('kapuslihat.agam');
 
-Route::get('/wow', function(){
-  $process = new Process('python ../routes/cabang.py');
-  $process->run();
+  //Daftar Alat
+  Route::get('/daftarAlatPeneliti', 'PenelitiController@daftarAlatPeneliti')->name('daftarAlat2');
 
-  $output = $process->getOutput();
-  $myarray = array();
-  $myarray = preg_split('/\r\n/', $output);
-  unset($myarray[2]);
-  dd($myarray);
+  //Daftar Fail
+  Route::get('/lihatFailPeneliti', 'PenelitiController@lihatFilePeneliti')->name('lihatFile1');
+
+  //Profil
+  Route::get('/profilPeneliti', 'PenelitiController@profilPeneliti')->name('profilPeneliti');
+  Route::post('/profilPeneliti', 'PenelitiController@gantiPassword')->name('ganti.password');
 });
+
+Route::prefix('kabid')->group(function(){
+  //Monitor Lokasi
+  Route::get('/home/{id_cabang}', 'KapusController@lihatChartKabid')->name('kapuslihat.agam');
+
+  //Profil
+  Route::get('/profilKabid', 'KapusController@profilKabid')->name('profil1');
+  Route::post('/profilKabid', 'KapusController@gantiPassword')->name('ganti.password');
+
+  //Daftar Alat
+  Route::get('/daftarAlatKabid', 'KapusController@daftarAlatKabid')->name('daftarAlat1');
+});
+
+// Route::get('/wow', function(){
+//   $process = new Process('python ../routes/cabang.py');
+//   $process->run();
+//
+//   $output = $process->getOutput();
+//   $myarray = array();
+//   $myarray = preg_split('/\r\n/', $output);
+//   unset($myarray[2]);
+//   dd($myarray);
+// });
 
 Route::get('/ea', function(){
-$mysqli = new mysqli("us-cdbr-iron-east-01.cleardb.net", "b74b41d1c88516", "39e76a83", "heroku_4e8464d3448c183");
+$mysqli = new mysqli("localhost", "root", "", "siaplapan");
 
 // Check connection
 if($mysqli === false){
     die("ERROR: Could not connect. " . $mysqli->connect_error);
 }
 
-  $process = new Process('../routes/data.py');
+  $process = new Process('python ../routes/data.py');
   $process->run();
 
   if (!$process->isSuccessful()) {
@@ -118,55 +136,44 @@ if($mysqli === false){
 	   $fail[$i][0] = substr($fail[$i][0], 1);
   }
 
+  $identitas = Alat::orderBy('id_alat')->pluck('identitas_alat');
+  $alat = Alat::orderBy('id_alat')->pluck('id_alat');
+
   for($i=0;$i<count($daerah);$i++) {
-  	if($daerah[$i] == 'Biak') {
-  		$id_daerah = 1;
-  	}
-  	else if($daerah[$i] == 'Pontianak') {
-  		$id_daerah = 2;
-  	}
-  	else if($daerah[$i] == 'Sumedang') {
-  		$id_daerah = 3;
-  	}
-  	else if($daerah[$i] == 'Garut') {
-  		$id_daerah = 4;
-  	}
-  	else if($daerah[$i] == 'Pasuruan') {
-  		$id_daerah = 5;
-  	}
-  	else if($daerah[$i] == 'Kupang') {
-  		$id_daerah = 6;
-  	}
-  	else if($daerah[$i] == 'Manado') {
-  		$id_daerah = 7;
-  	}
-  	else if($daerah[$i] == 'Agam') {
-  		$id_daerah = 8;
-  	}
+    $id_daerah = Cabang::where('nama_cabang', $daerah[$i])->value('id_cabang');
   	for($j=0;$j<count($fail[$i]);$j++) {
-  		if(strpos($fail[$i][$j], 'MD4') !== false) {
-  			$id_alat = 1;
-  		}
-  		else if(strpos($fail[$i][$j], 'BIK') !== false) {
-  			$id_alat = 2;
-  		}
-  		else if(strpos($fail[$i][$j], 'PTK') !== false) {
-  			$id_alat = 3;
-  		}
+      for($k=0;$k<count($identitas);$k++) {
+        $id_alat = 99; //nanti apus
+        if(strpos(strtolower($fail[$i][$j]), strtolower($identitas[$k])) !== false) {
+          $id_alat = $alat[$k];
+          break;
+        }
+  	  }
 
   		$str = $fail[$i][$j];
-  		$sql = "INSERT INTO file (id_cabang, id_alat, nama_file) VALUES ('$id_daerah', '$id_alat', '$str')";
-  		$mysqli->query($sql) === true;
+      $current_time = Carbon::now();
+      $current_time = $current_time->format('Y-m-d');
+
+      $user   = File::create([
+              'id_cabang'       => $id_daerah,
+              'id_alat'         => $id_alat,
+              'nama_file'       => $str,
+              'created_at'      => $current_time,
+              'updated_at'      => $current_time,
+          ]);
+
+  		// $sql = "INSERT INTO file (id_cabang, id_alat, nama_file) VALUES ('$id_daerah', '$id_alat', '$str')";
+  		// $mysqli->query($sql) === true;
   	}
   }
 
-if($mysqli->query($sql) === true) {
-    echo "Records inserted successfully.";
-}
-
-else {
-    echo "ERROR: Could not able to execute $sql. " . $mysqli->error;
-}
+// if($mysqli->query($sql) === true) {
+//     echo "Records inserted successfully.";
+// }
+//
+// else {
+//     echo "ERROR: Could not able to execute $sql. " . $mysqli->error;
+// }
 
 $mysqli->close();
 });

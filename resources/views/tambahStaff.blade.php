@@ -40,14 +40,14 @@
       <form class="form-horizontal form-label-left" action="{{ route('tambahStaff.create') }}" method="post"  enctype="multipart/form-data">
         {{ csrf_field() }}
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label class="control-label col-md-2">Foto Anggota
           </label>
           <div class="col-md-4">
-            {{--  <input type="file" class="form-control" name="photo" placeholder="Foto Anggota" class="form-control col-md-9 col-xs-12">  --}}
+            <input type="file" class="form-control" name="photo" placeholder="Foto Anggota" class="form-control col-md-9 col-xs-12">
             <input type="file" class="form-control" name="image" >
           </div>
-        </div>
+        </div> -->
 
         <div class="form-group">
           <label class="control-label col-md-2">Nama Anggota
@@ -77,7 +77,7 @@
         </div> -->
 
         <div class="form-group">
-          <label class="control-label col-md-2">Nomor Identitas
+          <label class="control-label col-md-2">NIK
             <span class="required">*</span>
           </label>
           <div class="col-md-9">
@@ -100,7 +100,7 @@
 
           <div class="form-group">
               <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-              <button type="submit" class="btn btn-success">Submit</button>
+              <button type="submit" class="btn btn-success">Tambah</button>
               </div>
           </div>
 

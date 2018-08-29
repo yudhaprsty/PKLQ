@@ -31,12 +31,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $side   = sidebar::orderBy('id_cabang')->get();
+        $side   = sidebar::orderBy('nama_cabang')->get();
         if(auth()->user()->isAdmin==1) {
           $id     = Auth::user()->id;
           $admins = User::find($id);
           $IP     = Cabang::orderBy('id_cabang')->get();
-          // session()->put('IP', $IP);
           return view('homeAdmin', compact('side'), compact('IP'));
         }
         else if(auth()->user()->isAdmin==0) {
@@ -49,9 +48,9 @@ class HomeController extends Controller
           $admins         = User::find($id);
           return view('kapus/home', compact('side'));
         }
-        else{
-          return view('home', compact('side'));
-        }
+        // else{
+        //   return view('home', compact('side'));
+        // }
     }
 
     public function admin()

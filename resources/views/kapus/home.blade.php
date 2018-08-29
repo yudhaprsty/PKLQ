@@ -1,3 +1,4 @@
+<?php session()->put('flag', 0); ?>
 @extends('layouts.kapusPartial.master')
 
 @section('title')
@@ -11,7 +12,7 @@ Dashboard
               <div class="inner">
                 <h3>{{DB::table('cabang')->count()}}</h3>
 
-                <p>Cabang</p>
+                <p>Lokasi Pengamatan</p>
               </div>
               <div class="icon">
                 <i class="ion fa-map-pin"></i>
@@ -39,6 +40,7 @@ Dashboard
 @section('content')
 
 <?php
+  $IP = App\Cabang::orderBy('id_cabang')->get();
   $i = 0;
   $cabang = array();
   $output = array();

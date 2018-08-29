@@ -1,7 +1,23 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Lapan | Bandung</title>
+    <link rel="shortcut icon" href="../favicon.ico">
+    <?php $value = Session::get('flag'); ?>
+    <?php
+    if($value==0) {
+      $value = 'Halaman Utama';
+    }
+    else if($value==1) {
+      $value = 'Daftar Alat';
+    }
+    else if($value==2) {
+      $value = 'Monitor Lokasi';
+    }
+    else if($value==99) {
+      $value = 'Ubah Kata Sandi';
+    }
+    ?>
+    <title> <?php echo $value; ?>  </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->

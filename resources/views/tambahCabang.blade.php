@@ -1,4 +1,4 @@
-<?php session()->put('flag', 2); ?>
+<?php session()->put('flag', 4); ?>
 @extends('templates.admins.master')
 
 @section('stylesheets')
@@ -9,7 +9,7 @@
 @section('content')
   <div class="x_panel">
     <div class="x_title">
-      <h2>Tambah Anggota</h2>
+      <h2>Tambah Lokasi Pengamatan</h2>
       <div class="clearfix"></div>
     </div>
     <div class="x_content">
@@ -42,7 +42,7 @@
         {{ csrf_field() }}
 
         <div class="form-group">
-          <label class="control-label col-md-2">Nama Cabang
+          <label class="control-label col-md-2">Nama Lokasi Pengamatan
             <span class="required">*</span>
           </label>
           <div class="col-md-9">
@@ -62,7 +62,7 @@
 
           <div class="form-group">
               <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-              <button type="submit" class="btn btn-success">Submit</button>
+              <button type="submit" class="btn btn-success">Tambah</button>
               </div>
           </div>
 

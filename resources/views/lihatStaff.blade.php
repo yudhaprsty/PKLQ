@@ -1,3 +1,4 @@
+<?php session()->put('flag', 1); ?>
 @extends('templates.admins.master')
 
 @section('content')
@@ -28,12 +29,12 @@
         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
           <thead>
             <tr>
-              <th style="width: 1%" >Number</th>
-              <th> Nama Anggota</th>
-              <th>Email</th>
-              <th>Nomor Identitas</th>
-              <th>Jabatan Anggota</th>
-              <th style="width: 1%">Actions</th>
+              <th style="width: 1%; text-align:center;">Nomor</th>
+              <th style="text-align:center;"> Nama Anggota</th>
+              <th style="text-align:center;">Email</th>
+              <th style="text-align:center;">NIK</th>
+              <th style="text-align:center;">Jabatan Anggota</th>
+              <th style="width: 1%; text-align:center;">Aksi</th>
             </tr>
           </thead>
           <tbody>
@@ -41,10 +42,10 @@
                 @foreach($readUser as $read)
               <?php $no++ ;?>
             <tr>
-              <td>{{ $no }}</td>
-              <td>{{ $read->name }}</td>
-              <td>{{ $read->email }}</td>
-              <td>{{ $read->identitas }}</td>
+              <td style="text-align:center;">{{ $no }}</td>
+              <td style="text-align:center;">{{ $read->name }}</td>
+              <td style="text-align:center;">{{ $read->email }}</td>
+              <td style="text-align:center;">{{ $read->identitas }}</td>
               <?php
                 if($read->isAdmin == 0) {
                   $jabatan = 'Peneliti';
@@ -56,8 +57,8 @@
                   $jabatan = 'Kepala Pusat';
                 }
               ?>
-              <td>{{ $jabatan }}</td>
-              <td>
+              <td style="text-align:center;">{{ $jabatan }}</td>
+              <td style="text-align:center;">
                 <?php
                   if($read->id != Auth::id()) {
                 ?>

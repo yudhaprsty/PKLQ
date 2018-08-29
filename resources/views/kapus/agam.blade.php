@@ -1,19 +1,23 @@
+<?php session()->put('flag', 2); ?>
 @extends('layouts.kapusPartial.master')
 
 @section('content')
   <?php
     $tahun = Carbon\Carbon::now()->format('Y');
-    // dd((integer)$tahun);
+    $id = Session::get('id');
+    $nama_lokasi = App\Cabang::where('id_cabang', $id)->value('nama_cabang');
+    // dd($nama_lokasi);
   ?>
   <div class="box box-primary">
     <div class="box-header with-border">
-      <h3 class="box-title">Per Bulan</h3>
+      <h2 class="box-title">Grafik Monitoring Data Lokasi <?php echo $nama_lokasi; ?></h2>
     </div>
     <?php
       $file = Session::get('file');
       $id = Session::get('id');
       $alat = Session::get('alat');
-      // dd($id);
+      $cabang = App\Cabang::where('id_cabang', $id)->value('nama_cabang');
+      // dd($cabang);
     ?>
     <div class="nav-tabs">
       <ul class="nav nav-tabs">
@@ -109,7 +113,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChart<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -192,7 +196,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myCharta<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -275,7 +279,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartb<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -358,7 +362,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartc<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -441,7 +445,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartd<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -524,7 +528,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myCharte<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -607,7 +611,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartf<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -690,7 +694,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartg<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -773,7 +777,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myCharth<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -856,7 +860,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myCharti<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -938,7 +942,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartj<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -1021,7 +1025,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartk<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -1129,7 +1133,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartl<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -1212,7 +1216,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartm<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -1295,7 +1299,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartn<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -1378,7 +1382,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myCharto<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -1461,7 +1465,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartp<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -1544,7 +1548,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartq<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -1627,7 +1631,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartr<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -1710,7 +1714,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myCharts<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -1793,7 +1797,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartt<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -1876,7 +1880,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartu<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -1958,7 +1962,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartv<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -2041,7 +2045,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartw<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -2149,7 +2153,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartx<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -2232,7 +2236,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myCharty<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -2315,7 +2319,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartz<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -2398,7 +2402,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartaa<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -2481,7 +2485,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartbb<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -2564,7 +2568,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartcc<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -2647,7 +2651,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartdd<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -2730,7 +2734,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartee<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -2813,7 +2817,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartff<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -2896,7 +2900,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartgg<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -2978,7 +2982,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myCharthh<?php echo $alats->id_alat; ?>").getContext('2d');
@@ -3061,7 +3065,7 @@
                         },
                       title: {
                         display: true,
-                        text: '<?php echo $alats->nama_alat; ?>'
+                        text: ['<?php echo $alats->nama_alat; ?>', '<?php echo $cabang; ?>']
                       }
                     };
                   var ctx = document.getElementById("myChartii<?php echo $alats->id_alat; ?>").getContext('2d');

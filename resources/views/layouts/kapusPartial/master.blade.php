@@ -17,10 +17,10 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{ asset('admintemplate/dist/img/p3.png')}}" class="user-image" alt="User Image">
+          <img src="{{ asset('..\public\admintemplate\dist\img\p3.png')}}" class="user-image" alt="User Image">
         </div>
         <div class="pull-left info">
-          <span>Welcome,</span>
+          <p><span>Selamat datang,</span></p>
           <p>{{ Auth::user()->name }} </p>
           <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
         </div>
@@ -38,26 +38,40 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">Navigasi Utama</li>
         <li class="">
           <a href="{{ route('admin.dashboard')}}">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <i class="fa fa-dashboard"></i> <span>Halaman Utama</span>
           </a>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>Charts</span>
+            <i class="fa fa-line-chart"></i>
+            <span>Monitor Lokasi</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
+            <?php
+              use App\Cabang;
+              $side = Cabang::orderBy('nama_cabang')->get();
+            ?>
             @foreach ($side as $id)
             <li><a href="{{route('kapuslihat.agam', $id->id_cabang) }}"> {{$id->nama_cabang}} </a></li>
             @endforeach
           </ul>
         </li>
+        <li class="">
+          <a href="{{ route('daftarAlat1')}}">
+            <i class="fa fa-file-o"></i> <span>Daftar Alat</span>
+          </a>
+        </li>
+        <!-- <li class="">
+          <a href="{{ route('lihatFile1')}}">
+            <i class="fa fa-folder-open-o"></i> <span>Daftar Fail</span>
+          </a>
+        </li> -->
         {{--  hapus dibawah ini  --}}
       </ul>
     </section>
